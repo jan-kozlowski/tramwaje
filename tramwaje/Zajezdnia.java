@@ -1,9 +1,11 @@
 package tramwaje;
 
-public class Zajezdnia {
+import java.util.Arrays;
+
+public abstract class Zajezdnia {
 
     private String nazwa;
-    private Lista<Pojazd> pojazdy;
+    protected Lista<Pojazd> pojazdy;
 
     public Zajezdnia(String _nazwa) {
 
@@ -18,11 +20,19 @@ public class Zajezdnia {
 
     public void zarejestrujPojazd(Pojazd pojazd) {
 
-        pojazdy.dodajNaPoczatek(pojazd);
+        pojazdy.dodajNaKoniec(pojazd);
     }
 
-    public void usunPojazd(Pojazd pojazd) {
+    @Override
+    public String toString() {
 
-//        pojazdy.usunElement(new ElementListy<>(pojazd));
+        String[] nazwyPojazdow = new String[pojazdy.rozmiar()];
+
+        int index = 0;
+        Lista<Pojazd>.IteratorListy iteratorListy = pojazdy.iterator();
+        while (iteratorListy.hasNext())
+            nazwyPojazdow[index++] = iteratorListy.next().opisNumeru();
+
+        return nazwa+":\n"+"- pojazdy: "+ Arrays.toString(nazwyPojazdow);
     }
 }

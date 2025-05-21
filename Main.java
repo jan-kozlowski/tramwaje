@@ -1,14 +1,22 @@
-import tramwaje.Pojazd;
-import tramwaje.Zajezdnia;
+import tramwaje.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Zajezdnia mojaZajezdnia = new Zajezdnia("przystanek 1");
-        Pojazd p1 = new Pojazd(15, "ABCD", mojaZajezdnia);
+        ZajezdniaAutobusowa zajezdniaAutobusowa = new ZajezdniaAutobusowa("Przystanek autobusowy");
+        ZajezdniaTramwajowa zajezdniaTramwajowa = new ZajezdniaTramwajowa("Przystanek tramwajowy");
+        Autobus a1 = new Autobus(15, "A1", zajezdniaAutobusowa, 123);
+        Autobus a2 = new Autobus(15, "B1", zajezdniaAutobusowa, 123);
+        Autobus a3 = new Autobus(15, "C157", zajezdniaAutobusowa, 123);
+        Tramwaj t1 = new Tramwaj(2, "T1", zajezdniaTramwajowa,
+                new Wagon[]{new Wagon(), new WagonSilnikowy(), new WagonSilnikowy()});
+        Tramwaj t2 = new Tramwaj(2, "T123", zajezdniaTramwajowa,
+                new Wagon[]{new Wagon()});
 
-        System.out.println(p1);
-
+        System.out.println(zajezdniaAutobusowa);
+        System.out.println("---------------------");
+        System.out.println(zajezdniaTramwajowa);
     }
+
 }

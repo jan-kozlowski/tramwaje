@@ -1,42 +1,43 @@
 package tramwaje;
 
-public class Pojazd {
+public abstract class Pojazd {
 
     private double szybkoscMaksymalna;
     private String numer;
-    private Zajezdnia zajezdnia;
+    Zajezdnia zajezdnia;
 
     public Pojazd(double _szybkoscMaksymalna, String _numer, Zajezdnia _zajezdnia) {
 
         szybkoscMaksymalna = _szybkoscMaksymalna;
         numer = _numer;
         zajezdnia = _zajezdnia;
-
-        // nie moze istniec niezarejstrowany pojazd
-        zajezdnia.zarejestrujPojazd(this);
     }
 
     public String opisSzybkosci() {
 
-        return "szybkość maksymalna: " + szybkoscMaksymalna;
+        return "- szybkość maksymalna: " + szybkoscMaksymalna;
     }
 
     public String opisNumeru() {
 
-        return "numer: " + numer;
+        return numer + " ("+getClass().getSimpleName()+")";
     }
 
     public String opisZajezdni() {
 
-        return "nazwa zajezdni: " + zajezdnia.getNazwa();
+        return "- nazwa zajezdni: '" + zajezdnia.getNazwa()+"'";
+    }
+
+    public String pelenOpis() {
+
+        return opisNumeru()+":\n"+
+                opisSzybkosci()+"\n"+
+                opisZajezdni();
     }
 
     @Override
     public String toString() {
 
-        return getClass().getSimpleName()+":\n"+
-                opisSzybkosci()+"\n"+
-                opisNumeru()+"\n"+
-                opisZajezdni();
+        return pelenOpis();
     }
 }
